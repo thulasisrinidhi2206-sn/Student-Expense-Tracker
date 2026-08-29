@@ -46,6 +46,13 @@ def test_validate_amount_raises_error_with_zero():
         validate_amount(0)
 
 
+def test_validate_amount_raises_error_with_sub_cent_amount_rounding_to_zero():
+    with pytest.raises(ValueError, match="greater than zero"):
+        validate_amount("0.004")
+    with pytest.raises(ValueError, match="greater than zero"):
+        validate_amount(0.001)
+
+
 def test_validate_amount_raises_error_with_negative_amount():
     with pytest.raises(ValueError, match="greater than zero"):
         validate_amount("-15.50")

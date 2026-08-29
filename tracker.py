@@ -20,10 +20,11 @@ def validate_amount(amount_input: str | float | int) -> float:
     else:
         raise ValueError(f"Unsupported type for amount: {type(amount_input).__name__}")
 
-    if amount <= 0:
+    rounded_amount = round(amount, 2)
+    if rounded_amount <= 0:
         raise ValueError("Amount must be greater than zero.")
 
-    return round(amount, 2)
+    return rounded_amount
 
 
 def add_expense(
