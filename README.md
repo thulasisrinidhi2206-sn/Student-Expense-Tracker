@@ -61,12 +61,12 @@ python -m pytest -v
 
 | Function | Description |
 | :--- | :--- |
-| `validate_amount(amount_input)` | Validates numeric inputs, handles rounding, and enforces values > 0. |
-| `add_expense(expenses, description, category, amount)` | Creates and stores a new expense dictionary record. |
-| `calculate_total(expenses)` | Computes the sum of all recorded expenses. |
-| `calculate_by_category(expenses)` | Aggregates expense totals grouped by category. |
-| `calculate_average(expenses)` | Computes the average expense value. |
-| `find_extremes(expenses)` | Identifies the highest and lowest expense records. |
-| `view_all_expenses(expenses)` | Generates formatted rows for table display. |
-| `print_summary(expenses)` | Generates a complete analytics breakdown report. |
-| `main()` | CLI interactive menu loop. |
+| `validate_amount(amount_input)` | Validate and return the given amount as a positive float. |
+| `add_expense(expenses, description, category, amount)` | Add a new expense with description, category, and amount. |
+| `calculate_total(expenses)` | Return the total amount of all expenses. |
+| `calculate_by_category(expenses)` | Return total expenses grouped by category. |
+| `calculate_average(expenses)` | Return the average amount of all expenses. |
+| `find_extremes(expenses)` | Return the highest and lowest individual expenses. |
+| `view_all_expenses(expenses)` | Return formatted lines representing all recorded expenses. |
+| `print_summary(expenses)` | Print a summary and category breakdown of all expenses. |
+| `main()` | Run the interactive command-line interface for the tracker. |

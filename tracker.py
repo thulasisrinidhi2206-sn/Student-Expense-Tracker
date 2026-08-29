@@ -6,17 +6,7 @@ student expenses with modular functions and input validation.
 
 
 def validate_amount(amount_input: str | float | int) -> float:
-    """Validate that the given amount is a valid positive number.
-
-    Args:
-        amount_input: The input value to validate (string, float, or int).
-
-    Returns:
-        float: The validated positive amount rounded to 2 decimal places.
-
-    Raises:
-        ValueError: If amount_input is not numeric or not strictly greater than zero.
-    """
+    """Validate and return the given amount as a positive float."""
     if isinstance(amount_input, str):
         cleaned = amount_input.strip()
         if not cleaned:
@@ -39,20 +29,7 @@ def validate_amount(amount_input: str | float | int) -> float:
 def add_expense(
     expenses: list[dict], description: str, category: str, amount: float
 ) -> dict:
-    """Add a new expense item to the expense list.
-
-    Args:
-        expenses: The list of expense records.
-        description: Description of what the expense was for.
-        category: Category of the expense (e.g. Food, Books, Rent).
-        amount: Numeric cost of the expense.
-
-    Returns:
-        dict: The newly created expense dictionary.
-
-    Raises:
-        ValueError: If description or category are blank, or amount is invalid.
-    """
+    """Add a new expense with description, category, and amount."""
     desc_clean = description.strip() if isinstance(description, str) else ""
     cat_clean = category.strip().title() if isinstance(category, str) else ""
 
@@ -73,28 +50,14 @@ def add_expense(
 
 
 def calculate_total(expenses: list[dict]) -> float:
-    """Calculate the total sum of all expenses.
-
-    Args:
-        expenses: The list of expense records.
-
-    Returns:
-        float: Sum of all expenses, or 0.0 if no expenses exist.
-    """
+    """Return the total amount of all expenses."""
     if not expenses:
         return 0.0
     return round(sum(item["amount"] for item in expenses), 2)
 
 
 def calculate_by_category(expenses: list[dict]) -> dict[str, float]:
-    """Calculate total expenses grouped by category.
-
-    Args:
-        expenses: The list of expense records.
-
-    Returns:
-        dict[str, float]: Mapping of category names to their respective total amounts.
-    """
+    """Return total expenses grouped by category."""
     category_totals: dict[str, float] = {}
     for item in expenses:
         category = item["category"]
@@ -105,14 +68,7 @@ def calculate_by_category(expenses: list[dict]) -> dict[str, float]:
 
 
 def calculate_average(expenses: list[dict]) -> float:
-    """Calculate the average amount spent per expense.
-
-    Args:
-        expenses: The list of expense records.
-
-    Returns:
-        float: The average expense amount, or 0.0 if no expenses exist.
-    """
+    """Return the average amount of all expenses."""
     if not expenses:
         return 0.0
     total = calculate_total(expenses)
@@ -120,15 +76,7 @@ def calculate_average(expenses: list[dict]) -> float:
 
 
 def find_extremes(expenses: list[dict]) -> tuple[dict | None, dict | None]:
-    """Find the highest and lowest individual expenses.
-
-    Args:
-        expenses: The list of expense records.
-
-    Returns:
-        tuple[dict | None, dict | None]: (highest_expense, lowest_expense),
-        or (None, None) if the list is empty.
-    """
+    """Return the highest and lowest individual expenses."""
     if not expenses:
         return None, None
 
@@ -138,14 +86,7 @@ def find_extremes(expenses: list[dict]) -> tuple[dict | None, dict | None]:
 
 
 def view_all_expenses(expenses: list[dict]) -> list[str]:
-    """Generate human-readable lines representing all recorded expenses.
-
-    Args:
-        expenses: The list of expense records.
-
-    Returns:
-        list[str]: Formatted string list of expenses.
-    """
+    """Return formatted lines representing all recorded expenses."""
     if not expenses:
         return ["No expenses recorded yet."]
 
@@ -160,11 +101,7 @@ def view_all_expenses(expenses: list[dict]) -> list[str]:
 
 
 def print_summary(expenses: list[dict]) -> None:
-    """Print an analytic summary of all expenses to standard output.
-
-    Args:
-        expenses: The list of expense records.
-    """
+    """Print a summary and category breakdown of all expenses."""
     if not expenses:
         print("\n[!] No expenses to summarize. Please add some expenses first.")
         return
@@ -198,7 +135,7 @@ def print_summary(expenses: list[dict]) -> None:
 
 
 def main() -> None:
-    """Interactive command-line interface for the Student Expense Tracker."""
+    """Run the interactive command-line interface for the tracker."""
     expenses: list[dict] = []
 
     print("=" * 50)
